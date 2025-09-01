@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Student Management</h1>
+    
+    <!-- Add Student Form -->
+    <form method="POST" class="mb-4">
+        <input type="hidden" name="add_student" value="1">
+        <div class="mb-3">
+            <label for="full_name" class="form-label">Full Name (Required)</label>
+            <input type="text" class="form-control" id="full_name" name="full_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email (Optional, Unique)</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+    
+    <!-- Search Bar -->
+    <form method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search by name" value="{{ search_query }}">
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+        </div>
+    </form>
+    
+    <!-- Students Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student['STUDENT_ID'] }}</td>
+                    <td>{{ student['FULL_NAME'] }}</td>
+                    <td>{{ student['EMAIL'] or 'N/A' }}</td>
+                    <td>
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="delete_student" value="1">
+                            <input type="hidden" name="student_id" value="{{ student['STUDENT_ID'] }}">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4">No students found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
