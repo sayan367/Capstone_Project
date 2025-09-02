@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=Merriweather&display=swap');
+
+/* Pirate Background */
+body {
+  background: url("https://www.transparenttextures.com/patterns/aged-paper.png"), 
+              linear-gradient(135deg, #2e2b24, #1a1a1a);
+  background-blend-mode: overlay;
+  color: #f0e6d2;
+  font-family: 'Merriweather', serif;
+  min-height: 100vh;
+}
+
+/* Navbar - Wooden Look */
+.custom-navbar {
+  background: linear-gradient(90deg, #3b2f2f, #1c1c1c);
+  padding: 1rem;
+  border-bottom: 2px solid #d4af37;
+}
+
+.custom-navbar .navbar-brand {
+  font-family: 'Pirata One', cursive;
+  font-size: 1.7rem;
+  color: #f0e68c !important;
+  letter-spacing: 2px;
+}
+
+.custom-navbar .nav-link {
+  color: #f0e6d2 !important;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #d4af37 !important;
+}
+
+.custom-navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background-color: #d4af37;
+  transition: width 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Card - Old Parchment */
+.card {
+  background: rgba(47, 38, 28, 0.9);
+  color: #f0e6d2;
+  border-radius: 12px;
+  border: 1px solid #d4af37;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  transition: transform 0.3s;
+}
+.card:hover { transform: scale(1.02); }
+
+/* Table */
+.table {
+  color: #f0e6d2;
+}
+.table thead {
+  background-color: #3b2f2f;
+  color: #d4af37;
+  font-family: 'Pirata One', cursive;
+  font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #8b0000;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #a52a2a;
+}
+.btn-success {
+  background-color: #d4af37;
+  border: none;
+  color: #1c1c1c;
+}
+.btn-success:hover {
+  background-color: #b8860b;
+  color: white;
+}
+
+/* Footer */
+.footer {
+  background: #1c1c1c;
+  color: #d4af37;
+  border-top: 2px solid #3b2f2f;
+}
+/* Animated ship background */
+.ship {
+  position: fixed;
+  bottom: 50px;
+  left: -200px;
+  width: 150px;
+  opacity: 0.8;
+  animation: sail 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes sail {
+  0%   { left: -200px; transform: scaleX(1); }
+  50%  { left: 100vw; transform: scaleX(1); }
+  51%  { transform: scaleX(-1); } /* Flip ship when turning */
+  100% { left: -200px; transform: scaleX(-1); }
+}

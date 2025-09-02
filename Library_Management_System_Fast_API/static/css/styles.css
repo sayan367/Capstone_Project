@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f9ff;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #005f99, #00b4d8);
+  padding: 1em;
+  text-align: center;
+}
+.navbar a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+.navbar a:hover {
+  color: #ffdd00;
+  transform: scale(1.1);
+}
+
+/* Page container */
+.container {
+  padding: 20px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0056b3;
+}
+
+/* Forms */
+.book-form input, .book-form button {
+  padding: 8px;
+  margin: 5px;
+}
+.book-form button {
+  background: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.book-form button:hover {
+  background: #0056b3;
+}
+
+/* Book list */
+.book-list {
+  list-style: none;
+  padding: 0;
+}
+.book-list li {
+  margin: 10px 0;
+}
+.delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.delete-btn:hover {
+  background: darkred;
+}
+
+
+/* Custom styles if needed */
+body {
+    background-color: #f8f9fa;
+}

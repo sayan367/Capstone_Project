@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Library Management{% endblock %}
+{% block content %}
+    <h1>Library Management</h1>
+    <h2>Add New Book</h2>
+    <form action="/library" method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title (required)</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author (required)</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN (optional, must be unique)</label>
+            <input type="text" class="form-control" id="isbn" name="isbn">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+    <h2>All Books</h2>
+    {% if books %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.book_id }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.isbn or 'N/A' }}</td>
+                        <td>
+                            <form action="/library/delete/{{ book.book_id }}" method="post">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No books added yet.</p>
+    {% endif %}
+{% endblock %}

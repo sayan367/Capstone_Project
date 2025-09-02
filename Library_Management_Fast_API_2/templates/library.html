@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-secondary mb-4">Library Management</h2>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<div class="card mb-4 shadow-sm">
+  <div class="card-header bg-primary text-white">
+    Add New Book
+  </div>
+  <div class="card-body">
+    <form method="post" action="/library" class="row g-3">
+      <div class="col-md-4">
+        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="title" name="title" required />
+      </div>
+      <div class="col-md-4">
+        <label for="author" class="form-label">Author <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="author" name="author" required />
+      </div>
+      <div class="col-md-4">
+        <label for="isbn" class="form-label">ISBN (optional, unique)</label>
+        <input type="text" class="form-control" id="isbn" name="isbn" />
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-success">Add Book</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h3 class="mb-3">Books List</h3>
+<table class="table table-striped table-hover shadow-sm align-middle">
+  <thead class="table-primary">
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book['BOOK_ID'] }}</td>
+      <td>{{ book['TITLE'] }}</td>
+      <td>{{ book['AUTHOR'] }}</td>
+      <td>{{ book['ISBN'] or '-' }}</td>
+      <td>
+        <form method="post" action="/library/delete/{{ book['BOOK_ID'] }}" onsubmit="return confirm('Are you sure you want to delete this book?');" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="5" class="text-center text-muted">No books found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
